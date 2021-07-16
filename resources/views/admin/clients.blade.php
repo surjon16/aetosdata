@@ -12,40 +12,40 @@ Clients
         <div class="modal-dialog">
             <div class="modal-content card bg-secondary shadow">
                 <div class="modal-header card-header bg-white border-0">
-                    <h4 class="card-title">Sidebar Item</h4>
+                    <h4 class="card-title">Client Information</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <input id="sidebar_item_id" type="hidden" value="-1">
+                <input id="id" type="hidden" value="-1">
                 <div class="modal-body card-body">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="form-control-label">Title</label>
-                                <input id="title" type="text" class="form-control form-control-sm">
+                                <label class="form-control-label">Full Name</label>
+                                <input id="fullname" type="text" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="form-control-label">Element ID</label>
-                                <input id="element_id" type="text" class="form-control form-control-sm">
+                                <label class="form-control-label">Email</label>
+                                <input id="email" type="text" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="form-control-label">Link</label>
-                                <input id="link" type="text" class="form-control form-control-sm">
+                                <label class="form-control-label">Phone</label>
+                                <input id="phone" type="text" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label class="form-control-label">Icon</label>
-                                <input id="icon" type="text" class="form-control form-control-sm">
+                                <label class="form-control-label">Password</label>
+                                <input id="password" type="password" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ Clients
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 {{-- <th scope="col">Address</th> --}}
-                                {{-- <th scope="col"></th> --}}
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody class="list">
@@ -106,14 +106,14 @@ Clients
                                     <td>{{ $data->email }}</td>
                                     <td>{{ $data->phone }}</td>
                                     {{-- <td>{{ $data->address }}</td> --}}
-                                    {{-- <td>
+                                    <td>
                                         <a type="button" class="mr-1 text-light" onclick="EditClient({{ json_encode($data) }})">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <a type="button" class="mr-1 text-light" onclick="DeleteClient({{ json_encode($data) }})">
                                             <i class="fas fa-trash"></i>
                                         </a>
-                                    </td> --}}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -163,11 +163,11 @@ Clients
 
         function AddNewClient() {
 
-            $('#sidebar_item_id').val('-1')
-            $('#title').val('')
-            $('#element_id').val('')
-            $('#link').val('')
-            $('#icon').val('')
+            $('#id').val('-1')
+            $('#fullname').val('')
+            $('#email').val('')
+            $('#phone').val('')
+            $('#password').val('')
 
             $(modal_default).modal({
                 "backdrop"  : "static",
@@ -181,11 +181,11 @@ Clients
 
             console.log(e)
 
-            $('#sidebar_item_id').val(e.id)
-            $('#title').val(e.title)
-            $('#element_id').val(e.element_id)
-            $('#link').val(e.link)
-            $('#icon').val(e.icon)
+            $('#id').val(e.id)
+            $('#fullname').val(e.fullname)
+            $('#email').val(e.email)
+            $('#phone').val(e.phone)
+            $('#password').val(e.password)
 
             $(modal_default).modal({
                 "backdrop"  : "static",
@@ -213,7 +213,7 @@ Clients
                         data = {
                             'id' : e.id
                         }
-                        Controller.Post('/api/delete/sidebar_item', data).done(function(result) {
+                        Controller.Post('/api/delete/client', data).done(function(result) {
                             console.log(result)
                             window.location.reload()
                         })
@@ -225,86 +225,13 @@ Clients
 
         function SaveItem() {
             data = {
-                'id'                : $('#sidebar_item_id').val(),
-                'title'             : $('#title').val(),
-                'element_id'        : $('#element_id').val(),
-                'link'              : $('#link').val(),
-                'icon'              : $('#icon').val()
+                'id'        : $('#id').val(),
+                'fullname'  : $('#fullname').val(),
+                'email'     : $('#email').val(),
+                'phone'     : $('#phone').val(),
+                'password'  : $('#password').val()
             }
-            Controller.Post('/api/upsert/sidebar_item', data).done(function(result) {
-                console.log(result)
-                window.location.reload()
-            })
-        }
-
-        //
-
-        function AddNewRoleAccess() {
-
-            $('#sidebar_role_access_id').val('-1')
-            $('#account_role_id').val('')
-            $('#sidebar_id').val('')
-
-            $(modal_sidebar_role_access).modal({
-                "backdrop"  : "static",
-                "keyboard"  : true,
-                "show"      : true
-            })
-
-        }
-
-        function EditRoleAccess(e) {
-
-            console.log(e)
-
-            $('#sidebar_role_access_id').val(e.id)
-            $('#account_role_id').val(e.role_id)
-            $('#sidebar_id').val(e.sidebar_id)
-
-            $(modal_sidebar_role_access).modal({
-                "backdrop"  : "static",
-                "keyboard"  : true,
-                "show"      : true
-            })
-
-        }
-
-        function DeleteRoleAccess(e) {
-            bootbox.confirm({
-                message: "Delete item?",
-                buttons: {
-                    confirm: {
-                        label: 'Delete',
-                        className: 'btn-sm btn-danger'
-                    },
-                    cancel: {
-                        label: 'Cancel',
-                        className: 'btn-sm btn-info'
-                    }
-                },
-                callback: function(result) {
-                    if(result) {
-                        data = {
-                            'id' : e.id
-                        }
-                        Controller.Post('/api/delete/sidebar_role_access', data).done(function(result) {
-                            console.log(result)
-                            window.location.reload()
-                        })
-                    }
-                }
-            });
-
-        }
-
-        function SaveRoleAccess() {
-            data = {
-                'id'                : $('#sidebar_role_access_id').val(),
-                'role_id'           : $('#account_role_id').val(),
-                'sidebar_id'        : $('#sidebar_id').val(),
-            }
-            console.log(data);
-            Controller.Post('/api/upsert/sidebar_role_access', data).done(function(result) {
+            Controller.Post('/api/upsert/client', data).done(function(result) {
                 console.log(result)
                 window.location.reload()
             })

@@ -18,10 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 // Account
 Route::match(['get', 'post'], '/read/accounts',     'DataController@read_accounts');
-Route::match(['get', 'post'], '/read/clients',      'DataController@read_clients');
 Route::match(['get', 'post'], '/read/account',      'DataController@read_account');
 Route::match(['get', 'post'], '/upsert/account',    'DataController@upsert_account');
 Route::match(['get', 'post'], '/delete/account',    'DataController@delete_account');
+Route::match(['get', 'post'], '/read/clients',      'DataController@read_clients');
+Route::match(['get', 'post'], '/upsert/client',     'DataController@upsert_client');
+Route::match(['get', 'post'], '/delete/client',     'DataController@delete_client');
 
 // Plans
 Route::match(['get', 'post'], '/read/plans',    'DataController@read_plans');

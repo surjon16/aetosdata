@@ -19,7 +19,7 @@ Plans
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label">Label</label>
-                                <input id="label" type="text" class="form-control form-control-sm">
+                                <input id="label" type="text" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@ Plans
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label">Description</label>
-                                <textarea id="description" class="form-control form-control-sm" rows="10"></textarea>
+                                <textarea id="description" class="form-control form-control-alternative" rows="10"></textarea>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@ Plans
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label">Price</label>
-                                <input id="price" type="number" class="form-control form-control-sm">
+                                <input id="price" type="number" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>

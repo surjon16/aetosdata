@@ -21,7 +21,7 @@ Settings
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label">Name</label>
-                                <input id="role" type="text" class="form-control form-control-sm">
+                                <input id="role" type="text" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@ Settings
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label">Title</label>
-                                <input id="title" type="text" class="form-control form-control-sm">
+                                <input id="title" type="text" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ Settings
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label">Element ID</label>
-                                <input id="element_id" type="text" class="form-control form-control-sm">
+                                <input id="element_id" type="text" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ Settings
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label">Link</label>
-                                <input id="link" type="text" class="form-control form-control-sm">
+                                <input id="link" type="text" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ Settings
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-control-label">Icon</label>
-                                <input id="icon" type="text" class="form-control form-control-sm">
+                                <input id="icon" type="text" class="form-control form-control-alternative">
                             </div>
                         </div>
                     </div>
@@ -95,13 +95,13 @@ Settings
                         <div class="col">
                             <div class="form-group">
                                 <label for="account_role_id" class="form-control-label">Account Role</label>
-                                <select id="account_role_id" data-style="bg-white shadow-sm" class="form-control form-control-sm  selectpicker">
+                                <select id="account_role_id" data-style="bg-white shadow-sm" class="form-control form-control-alternative  selectpicker">
                                     <option selected disabled>Please Select</option>
                                     @foreach ($roles->data as $item)
                                         <option value="{{ $item->id }}">{{ $item->role }}</option>
                                     @endforeach
                                 </select>
-                                <!-- <input id="state" type="text" class="form-control form-control-sm "> -->
+                                <!-- <input id="state" type="text" class="form-control form-control-alternative "> -->
                             </div>
                         </div>
                     </div>
@@ -109,13 +109,13 @@ Settings
                         <div class="col">
                             <div class="form-group">
                                 <label for="sidebar_id" class="form-control-label">Sidebar Item</label>
-                                <select id="sidebar_id" data-style="bg-white shadow-sm" class="form-control form-control-sm  selectpicker">
+                                <select id="sidebar_id" data-style="bg-white shadow-sm" class="form-control form-control-alternative  selectpicker">
                                     <option selected disabled>Please Select</option>
                                     @foreach ($sidebar_items->data as $item)
                                         <option value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
                                 </select>
-                                <!-- <input id="state" type="text" class="form-control form-control-sm "> -->
+                                <!-- <input id="state" type="text" class="form-control form-control-alternative "> -->
                             </div>
                         </div>
                     </div>
