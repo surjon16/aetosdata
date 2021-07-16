@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
-      Login | Aetosdata
+      Password Reset | Aetosdata
     </title>
 
     <link rel="icon" href="/img/logo-white.png">
@@ -33,7 +33,7 @@
             <div class="col-lg-5 col-md-6">
               {{-- <img src="/img/logo.png" alt="" height="100"> --}}
               <h2 class="text-white">Welcome to Aetosdata</h2>
-              <p class="text-lead text-light">Please login your account.</p>
+              <p class="text-lead text-light">Please fill in your email address.</p>
             </div>
           </div>
         </div>
@@ -54,8 +54,6 @@
               @if (session('errors'))
                 @if ($errors->has('email'))
                   <span class="h5 text-danger text-center d-block">{{ $errors->get('email')[0] }}</span>
-                @elseif ($errors->has('password'))
-                  <span class="h5 text-danger text-center d-block">{{ $errors->get('password')[0] }}</span>
                 @elseif ($errors->has('message'))
                   <span class="h5 text-danger text-center d-block">{{ $errors->get('message')[0] }}</span>
                 @endif
@@ -63,32 +61,24 @@
                   <span class="h5 text-success text-center d-block">{{ session('success') }}</span>
               @endif
 
-              <form action="/signin" method="post">
+              <form action="/forgot-password" method="post">
                 <p id="error-message" style="font-weight: 300;" class="h4 text-danger mb-4 d-none"></p>
                 @csrf
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
-                    </div>
-                    <input id="email" class="form-control form-control-alternative" placeholder="Email" type="text" name="email" value="{{old('email')}}">
-                  </div>
-                </div>
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input id="password" class="form-control form-control-alternative" placeholder="Password" type="password" name="password">
+                    <input id="email" class="form-control form-control-alternative" placeholder="Email Address" type="text" name="email">
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary mt-4">Login</button>
+                  <button type="submit" class="btn btn-primary mt-4">Submit</button>
                 </div>
               </form>
             </div>
             <div class="card-footer">
-              <a href="/forgot-password" class="small float-left">Forgot Password?</a>
+              <a href="/signin" class="small float-left">Sign In</a>
               <a href="/signup" class="small float-right">Sign Up</a>
             </div>
           </div>

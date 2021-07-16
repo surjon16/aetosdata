@@ -3,17 +3,19 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Traits\Data\Common;
 
 class Sidebar extends Component
 {
+    use Common;
+    public $sidebar;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
+    public function __construct() {
+        $this->sidebar = $this->current_sidebar();
     }
 
     /**

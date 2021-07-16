@@ -60,7 +60,7 @@ var Controller = {
                 // console.log(this.data)
             },
             error: function (xhr, status, error) {
-                // console.log(error)
+                console.log(error)
             },
             complete: function () { }
         })

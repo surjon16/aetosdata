@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers\Pages;
 
+use Closure;
 use Illuminate\Http\Request;
+use App\Http\Controllers\DataController;
 
-class ClientController extends Controller
+class ClientController extends DataController
 {
+    public function __construct() {
+        $this->middleware(function($request, $next) {
+            if ($this->is_client()) return $next($request);
+            return redirect('/');
+        });
+    }
+    public function dashboard(Request $request) {
+        return view('client.dashboard');
+    }
     public function search(Request $request) {
         return view('client.search');
     }

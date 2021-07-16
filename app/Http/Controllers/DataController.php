@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\Data\Accounts\Admin;
-use App\Traits\Data\Accounts\Client;
+use App\Traits\Data\Account;
+use App\Traits\Data\Role;
+use App\Traits\Data\Common;
 
 class DataController extends Controller
 {
-    use Admin, Client;
+    use Common, Account, Role;
 }
