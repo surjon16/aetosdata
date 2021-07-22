@@ -16,8 +16,8 @@ trait EbayService
         $hash = hash_init('sha256');
 
         hash_update($hash, $request->challenge_code);
-        hash_update($hash, $verificationToken);
-        hash_update($hash, $endpoint);
+        hash_update($hash, 'YkhKaGVYVjZZV3RwTG1Od1pVQm5iV0ZwYkM1amIyMUJSVlJQVTBSQlZFRXVRMDlO');
+        hash_update($hash, 'https://aetosdata.com/api/ebay/endpoint');
 
         $responseHash = hash_final($hash);
         return response()->json(
