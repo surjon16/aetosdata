@@ -31,8 +31,8 @@ Competitor Research
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-shop"></i></span>
                             </div>
-                            <input type="text" class="form-control form-control-alternative" placeholder="Search for Competitor Username or ID">
-                            <button type="submit" class="btn btn-primary ml-2">Search</button>
+                            <input id="userid" type="text" class="form-control form-control-alternative" placeholder="Search for Competitor Username or ID">
+                            <button type="button" class="btn btn-primary ml-2" onclick="Search()">Search</button>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,17 @@ Competitor Research
 
     <script>
 
-        setSideBar('#menu-search');
+        setSideBar('#menu-search')
+
+        function Search() {
+            data = {
+                'userid' : $('#userid').val()
+            }
+
+            Controller.POST('/api/search/store', data).done(function(result) {
+                console.log(result)
+            })
+        }
 
     </script>
 

@@ -7,6 +7,9 @@ use App\Traits\Data\Account;
 use App\Traits\Data\Plan;
 use App\Traits\Data\Role;
 use App\Traits\Data\Sidebar;
+
+use App\Traits\Ebay\EbayService;
+
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +19,7 @@ use Illuminate\Support\Facades\Validator;
 trait Common
 {
     use Utils;
-    use Account, Plan, Role, Sidebar;
+    use Account, EbayService, Plan, Role, Sidebar;
 
     public function is_admin() {
         $account = Auth::user();
