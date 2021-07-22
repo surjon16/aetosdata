@@ -26,14 +26,14 @@ trait Finding
                     ]);
         $service = $sdk->createFinding();
 
-        $request = new Types\FindItemsByKeywordsRequest();
-        $request->keywords = 'iphone';
-        $request->paginationInput = new Types\PaginationInput();
-        $request->paginationInput->entriesPerPage = 25;
-        $request->paginationInput->pageNumber = 1;
-        $request->sortOrder = 'CurrentPriceHighest';
+        $_request = new Types\FindItemsByKeywordsRequest();
+        $_request->keywords = $request->keywords;
+        $_request->paginationInput = new Types\PaginationInput();
+        $_request->paginationInput->entriesPerPage = 25;
+        $_request->paginationInput->pageNumber = 1;
+        $_request->sortOrder = 'CurrentPriceHighest';
 
-        $promise = $service->findItemsByKeywordsAsync($request);
+        $promise = $service->findItemsByKeywordsAsync($_request);
         $response = $promise->wait();
 
         return $response;
