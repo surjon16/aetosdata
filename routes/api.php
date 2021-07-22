@@ -26,11 +26,14 @@ Route::match(['get', 'post'], '/upsert/client',     'DataController@upsert_clien
 Route::match(['get', 'post'], '/delete/client',     'DataController@delete_client');
 
 // Ebay
-Route::match(['get', 'post'], '/get/store',             'DataController@get_store');
-Route::match(['get', 'post'], '/get/feedback',          'DataController@get_feedback');
-Route::match(['get', 'post'], '/get/sessionid',         'DataController@get_session_id');
-Route::match(['get', 'post'], '/find/itemsbykeywords',  'DataController@find_items_by_keywords');
-Route::match(['get', 'post'], '/ebay/endpoint',         'DataController@ebay_endpoint');
+Route::match(['get', 'post'], '/get/sessionid',             'DataController@get_sessionid');
+Route::match(['get', 'post'], '/get/store',                 'DataController@get_store');
+Route::match(['get', 'post'], '/get/feedback',              'DataController@get_feedback');
+Route::match(['get', 'post'], '/get/sellerlist',            'DataController@get_sellerlist');
+Route::match(['get', 'post'], '/find/itemsadvanced',        'DataController@find_items_advanced');
+Route::match(['get', 'post'], '/find/itemsbykeywords',      'DataController@find_items_by_keywords');
+Route::match(['get', 'post'], '/find/itemsinebaystores',    'DataController@find_items_in_ebay_stores');
+Route::match(['get', 'post'], '/ebay/endpoint',             'DataController@ebay_endpoint');
 
 // Plans
 Route::match(['get', 'post'], '/read/plans',    'DataController@read_plans');

@@ -26,4 +26,5 @@ trait EbayService
             [ 'content-type'=>'application/json']
         );
     }
+
 }
