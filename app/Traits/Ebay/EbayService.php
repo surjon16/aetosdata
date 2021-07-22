@@ -15,11 +15,15 @@ trait EbayService
     public function ebay_endpoint(Request $request) {
         $hash = hash_init('sha256');
 
-        hash_update($hash, $request->challengeCode);
+        hash_update($hash, $request->challenge_code);
         hash_update($hash, $verificationToken);
         hash_update($hash, $endpoint);
 
         $responseHash = hash_final($hash);
-        return $responseHash;
+        return response()->json(
+            ['challengeResponse'=> $responseHash],
+            [ 'content-type'=>'application/json'],
+            $status_code
+        );
     }
 }
