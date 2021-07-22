@@ -18,8 +18,8 @@ trait Finding
 
         $sdk = new Sdk([
                         'apiVersion' => config('ebay.compatibilityVersion'),
-                        'credentials'=> config('ebay.sandbox.credentials'),
-                        'sandbox'    => true,
+                        'credentials'=> config('ebay.production.credentials'),
+                        // 'sandbox'    => true,
                         'Finding'    => [
                             'apiVersion' => '1.13.0'
                         ]

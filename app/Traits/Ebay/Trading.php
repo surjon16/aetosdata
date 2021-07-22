@@ -18,15 +18,15 @@ trait Trading
 
         $sdk = new Sdk([
             'apiVersion'    => config('ebay.compatibilityVersion'),
-            'credentials'   => config('ebay.sandbox.credentials'),
-            'sandbox'       => true,
+            'credentials'   => config('ebay.production.credentials'),
+            // 'sandbox'       => true,
             'siteId' => config('ebay.siteId')
         ]);
         $service = $sdk->createTrading();
 
         $_request = new Types\GetStoreRequestType();
         $_request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-        $_request->RequesterCredentials->eBayAuthToken = config('ebay.sandbox.authToken');
+        $_request->RequesterCredentials->eBayAuthToken = config('ebay.production.authToken');
         $_request->UserID = $request->userid;
 
         $promise = $service->getStoreAsync($_request);
@@ -40,15 +40,15 @@ trait Trading
 
         $sdk = new Sdk([
             'apiVersion'    => config('ebay.compatibilityVersion'),
-            'credentials'   => config('ebay.sandbox.credentials'),
-            'sandbox'       => true,
+            'credentials'   => config('ebay.production.credentials'),
+            // 'sandbox'       => true,
             'siteId' => config('ebay.siteId')
         ]);
         $service = $sdk->createTrading();
 
         $_request = new Types\GetFeedbackRequestType();
         $_request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-        $_request->RequesterCredentials->eBayAuthToken = config('ebay.sandbox.authToken');
+        $_request->RequesterCredentials->eBayAuthToken = config('ebay.production.authToken');
         $_request->UserID = $request->userid;
 
         $promise = $service->getFeedbackAsync($_request);
