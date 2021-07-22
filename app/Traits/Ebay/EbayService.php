@@ -23,7 +23,7 @@ trait EbayService
         return response()->json(
             ['challengeResponse'=> $responseHash],
             [ 'content-type'=>'application/json'],
-            $status_code
+            200
         );
     }
 }
