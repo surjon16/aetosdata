@@ -22,8 +22,8 @@ trait EbayService
         $responseHash = hash_final($hash);
         return response()->json(
             ['challengeResponse'=> $responseHash],
-            [ 'content-type'=>'application/json'],
-            200
+            200,
+            [ 'content-type'=>'application/json']
         );
     }
 }
