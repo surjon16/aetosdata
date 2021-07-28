@@ -10,7 +10,13 @@ use App\Traits\Utils;
 trait EbayService
 {
     use Finding;
+    use Shopping;
     use Trading;
+
+    public function search_store(Request $request) {
+        $items = $this->find_items_advanced($request);
+        return $items;
+    }
 
     public function ebay_endpoint(Request $request) {
         $hash = hash_init('sha256');

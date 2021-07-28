@@ -16,8 +16,43 @@ trait Finding
 {
     use Utils;
 
-    public function find_items_advanced(Request $request)
-    {
+    public function find_completed_items(Request $request) {
+
+        $sdk = new Sdk([
+            'apiVersion' => config('ebay.compatibilityVersion'),
+            'credentials' => config('ebay.production.credentials'),
+            // 'sandbox'    => true,
+            'Finding'    => [
+                'apiVersion' => '1.13.0'
+            ]
+        ]);
+        $service = $sdk->createFinding();
+
+        $_request = new Types\FindCompletedItemsRequest();
+
+        $_request->itemFilter[] = new Types\ItemFilter([
+            'name'  => 'Seller',
+            'value' => [$request->keyword]
+        ]);
+        // $_request->itemFilter[] = new Types\ItemFilter([
+        //     'name'  => 'SoldItemsOnly',
+        //     'value' => ['true']
+        // ]);
+
+
+        $_request->paginationInput = new Types\PaginationInput();
+        $_request->paginationInput->entriesPerPage = 50; // result number
+        $_request->paginationInput->pageNumber = 1;
+
+        $_request->sortOrder = 'BestMatch';
+
+        $promise = $service->findCompletedItemsAsync($_request);
+        $response = $promise->wait();
+
+        return $response;
+    }
+
+    public function find_items_advanced(Request $request) {
 
         $sdk = new Sdk([
             'apiVersion' => config('ebay.compatibilityVersion'),
@@ -31,14 +66,19 @@ trait Finding
 
         $_request = new Types\FindItemsAdvancedRequest();
 
-        $itemFilter = new Types\ItemFilter();
-        $itemFilter->name = 'Seller';
-        $itemFilter->value[] = $request->keyword;
-        $_request->itemFilter[] = $itemFilter;
+        $_request->itemFilter[] = new Types\ItemFilter([
+            'name'  => 'Seller',
+            'value' => [$request->userid]
+        ]);
+        $_request->itemFilter[] = new Types\ItemFilter([
+            'name'  => 'SoldListings',
+            'value' => ['true']
+        ]);
 
-        $_request->paginationInput = new Types\PaginationInput();
-        $_request->paginationInput->entriesPerPage = 1;
-        $_request->paginationInput->pageNumber = 1;
+
+        // $_request->paginationInput = new Types\PaginationInput();
+        // $_request->paginationInput->entriesPerPage = 50; // result number
+        // $_request->paginationInput->pageNumber = 1;
 
         $_request->sortOrder = 'BestMatch';
 

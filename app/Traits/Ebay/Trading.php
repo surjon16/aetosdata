@@ -10,7 +10,6 @@ use DTS\eBaySDK\Trading\Types;
 
 use App\Traits\Utils;
 use DateTime;
-use Illuminate\Support\Facades\Date;
 
 trait Trading
 {
@@ -88,6 +87,9 @@ trait Trading
             'credentials'   => config('ebay.production.credentials'),
             'siteId'        => config('ebay.siteId'),
             // 'sandbox'       => true,
+            // 'Trading'       => [
+            //     'apiVersion' => '967'
+            // ]
         ]);
         $service = $sdk->createTrading();
 
@@ -96,7 +98,7 @@ trait Trading
         $_request->RequesterCredentials->eBayAuthToken = config('ebay.production.authToken');
         $_request->GranularityLevel = 'Coarse';
         $_request->UserID = $request->userid;
-        $_request->StartTimeFrom = new DateTime('2021-06-01');
+        $_request->StartTimeFrom = new DateTime('2021-04-23');
         $_request->StartTimeTo = new DateTime('2021-07-23');
         $_request->Pagination = new Types\PaginationType();
         $_request->Pagination->EntriesPerPage = 5;
