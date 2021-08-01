@@ -59,7 +59,7 @@ trait Finding
             'credentials' => config('ebay.production.credentials'),
             // 'sandbox'    => true,
             'Finding'    => [
-                'apiVersion' => '1.13.0'
+                'apiVersion' => '1.0.0'
             ]
         ]);
         $service = $sdk->createFinding();
@@ -70,17 +70,19 @@ trait Finding
             'name'  => 'Seller',
             'value' => [$request->userid]
         ]);
-        $_request->itemFilter[] = new Types\ItemFilter([
-            'name'  => 'SoldListings',
-            'value' => ['true']
-        ]);
 
+        // $_request->itemFilter[] = new Types\ItemFilter([
+        //     'name'  => 'HideDuplicateItems',
+        //     'value' => ['true']
+        // ]);
 
-        // $_request->paginationInput = new Types\PaginationInput();
-        // $_request->paginationInput->entriesPerPage = 50; // result number
-        // $_request->paginationInput->pageNumber = 1;
+        // $_request->outputSelector[] = 'SellerInfo';
+        // $_request->outputSelector[] = 'StoreInfo';
+        // $_request->outputSelector[] = 'GalleryInfo';
 
-        $_request->sortOrder = 'BestMatch';
+        $_request->paginationInput = new Types\PaginationInput();
+        $_request->paginationInput->entriesPerPage = (int)$request->entries; // result number
+        $_request->paginationInput->pageNumber = (int)$request->page;
 
         $promise = $service->findItemsAdvancedAsync($_request);
         $response = $promise->wait();
@@ -128,7 +130,12 @@ trait Finding
         $service = $sdk->createFinding();
 
         $_request = new Types\FindItemsIneBayStoresRequest();
-        $_request->storeName = $request->storeName;
+        // $_request->storeName = $request->userid;
+
+        $_request->itemFilter[] = new Types\ItemFilter([
+            'name'  => 'Seller',
+            'value' => [$request->userid]
+        ]);
 
         $_request->paginationInput = new Types\PaginationInput();
         $_request->paginationInput->entriesPerPage = 25;

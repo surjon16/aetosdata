@@ -26,17 +26,25 @@ Route::match(['get', 'post'], '/upsert/client',     'DataController@upsert_clien
 Route::match(['get', 'post'], '/delete/client',     'DataController@delete_client');
 
 // Ebay
-Route::match(['get', 'post'], '/search/store',              'DataController@search_store');
+Route::match(['get', 'post'], '/testpoint',                 'DataController@test_point');
+Route::match(['get', 'post'], '/get/apptoken',              'DataController@get_app_token');
+Route::match(['get', 'post'], '/get/usertoken',             'DataController@get_user_token');
+Route::match(['get', 'post'], '/get/itemsales',             'DataController@get_item_sales');
+Route::match(['get', 'post'], '/get/orders',                'DataController@get_orders');
+Route::match(['get', 'post'], '/get/itemtransactions',      'DataController@get_item_transactions');
 Route::match(['get', 'post'], '/get/sessionid',             'DataController@get_sessionid');
 Route::match(['get', 'post'], '/get/store',                 'DataController@get_store');
 Route::match(['get', 'post'], '/get/feedback',              'DataController@get_feedback');
 Route::match(['get', 'post'], '/get/sellerlist',            'DataController@get_sellerlist');
 Route::match(['get', 'post'], '/get/multipleitems',         'DataController@get_multiple_items');
+Route::match(['get', 'post'], '/get/singleitem',            'DataController@get_single_item');
 Route::match(['get', 'post'], '/find/completeditems',       'DataController@find_completed_items');
 Route::match(['get', 'post'], '/find/itemsadvanced',        'DataController@find_items_advanced');
 Route::match(['get', 'post'], '/find/itemsbykeywords',      'DataController@find_items_by_keywords');
 Route::match(['get', 'post'], '/find/itemsinebaystores',    'DataController@find_items_in_ebay_stores');
 Route::match(['get', 'post'], '/ebay/endpoint',             'DataController@ebay_endpoint');
+Route::match(['get', 'post'], '/ebay/consent/accepted',     'DataController@ebay_consent_accepted');
+Route::match(['get', 'post'], '/ebay/consent/declined',     'DataController@ebay_consent_declined');
 
 // Plans
 Route::match(['get', 'post'], '/read/plans',    'DataController@read_plans');
