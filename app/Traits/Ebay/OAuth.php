@@ -37,10 +37,12 @@ trait OAuth
         $service = new Services\OAuthService([
             // 'apiVersion'    => config('ebay.compatibilityVersion'),
             'credentials'   => config('ebay.production.credentials'),
-            'ruName'        => config('ebay.production.ruName')
+            'ruName'        => config('ebay.production.ruName'),
+            'Authorization' => 'Basic ' . base64_encode(config('ebay.production.credentials.appId').':'.config('ebay.production.credentials.certId'))
         ]);
         $_request = new Types\GetUserTokenRestRequest();
         $_request->code = $code;
+        $_request->redirect_uri = 'John_Raymark_De-JohnRaym-aetosd-koptkmst';
 
         $promise = $service->getUserTokenAsync($_request);
         $response = $promise->wait();
