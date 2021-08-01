@@ -41,7 +41,7 @@ trait EbayService
     }
 
     public function ebay_consent_accepted(Request $request) {
-        return json_encode($request->code);
+        return $this->get_user_token($request->code);
     }
 
     public function ebay_consent_declined(Request $request) {

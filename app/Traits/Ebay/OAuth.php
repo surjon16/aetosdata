@@ -32,7 +32,7 @@ trait OAuth
 
     }
 
-    public function get_user_token(Request $request)
+    public function get_user_token($code)
     {
 
         $service = new Services\OAuthService([
@@ -42,7 +42,7 @@ trait OAuth
             'sandbox'       => true,
         ]);
         $_request = new Types\GetUserTokenRestRequest();
-        $_request->code = config('ebay.production.authToken');
+        $_request->code = $code;
 
         $promise = $service->getUserTokenAsync($_request);
         $response = $promise->wait();
