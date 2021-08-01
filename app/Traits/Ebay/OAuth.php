@@ -32,14 +32,12 @@ trait OAuth
 
     }
 
-    public function get_user_token($code)
-    {
+    public function get_user_token($code) {
 
         $service = new Services\OAuthService([
             // 'apiVersion'    => config('ebay.compatibilityVersion'),
             'credentials'   => config('ebay.production.credentials'),
-            'ruName'        => config('ebay.production.ruName'),
-            'sandbox'       => true,
+            'ruName'        => config('ebay.production.ruName')
         ]);
         $_request = new Types\GetUserTokenRestRequest();
         $_request->code = $code;
