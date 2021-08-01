@@ -78,7 +78,7 @@ trait OAuth
                 'https://api.ebay.com/oauth/api_scope/commerce.identity.readonly',
                 'https://api.ebay.com/oauth/api_scope/commerce.notification.subscription',
                 'https://api.ebay.com/oauth/api_scope/commerce.notification.subscription.readonly',
-                'https://api.ebay.com/oauth/api_scope/buy.marketplace.insights'
+                // 'https://api.ebay.com/oauth/api_scope/buy.marketplace.insights'
             ];
 
         $promise = $service->refreshUserTokenAsync($_request);
