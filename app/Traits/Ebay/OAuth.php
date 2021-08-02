@@ -19,9 +19,9 @@ trait OAuth
     public function get_app_token(Request $request) {
 
         $service = new Services\OAuthService([
-            'credentials'   => config('ebay.sandbox.credentials'),
-            'ruName'        => config('ebay.sandbox.ruName'),
-            'sandbox'       => true,
+            'credentials'   => config('ebay.production.credentials'),
+            'ruName'        => config('ebay.production.ruName'),
+            // 'sandbox'       => true,
         ]);
 
         $promise = $service->getAppTokenAsync();
@@ -34,14 +34,14 @@ trait OAuth
     public function get_user_token($code) {
 
         $service = new Services\OAuthService([
-            'credentials'   => config('ebay.sandbox.credentials'),
-            'ruName'        => config('ebay.sandbox.ruName'),
-            'sandbox'       => true,
-            'Authorization' => 'Basic ' . base64_encode(config('ebay.sandbox.credentials.appId').':'.config('ebay.sandbox.credentials.certId'))
+            'credentials'   => config('ebay.production.credentials'),
+            'ruName'        => config('ebay.production.ruName'),
+            // 'sandbox'       => true,
+            'Authorization' => 'Basic ' . base64_encode(config('ebay.production.credentials.appId').':'.config('ebay.production.credentials.certId'))
         ]);
         $_request = new Types\GetUserTokenRestRequest();
         $_request->code = $code;
-        $_request->redirect_uri = config('ebay.sandbox.ruName');
+        $_request->redirect_uri = config('ebay.production.ruName');
 
         $promise = $service->getUserTokenAsync($_request);
         $response = $promise->wait();
@@ -53,15 +53,15 @@ trait OAuth
 
         $service = new Services\OAuthService([
             // 'apiVersion'    => config('ebay.compatibilityVersion'),
-            'credentials'   => config('ebay.sandbox.credentials'),
-            'ruName'        => config('ebay.sandbox.ruName'),
-            'sandbox'       => true,
-            'Authorization' => 'Basic ' . base64_encode(config('ebay.sandbox.credentials.appId').':'.config('ebay.sandbox.credentials.certId'))
+            'credentials'   => config('ebay.production.credentials'),
+            'ruName'        => config('ebay.production.ruName'),
+            // 'sandbox'       => true,
+            'Authorization' => 'Basic ' . base64_encode(config('ebay.production.credentials.appId').':'.config('ebay.production.credentials.certId'))
         ]);
 
         $_request = new Types\RefreshUserTokenRestRequest();
-        $_request->refresh_token = 'v^1.1#i^1#p^3#r^1#f^0#I^3#t^Ul4xMF8wOjEyMUU3QTlFRUZCOUE5NjI0NDc0NkJGNzdGREM1QjZEXzFfMSNFXjEyODQ=';
-        // $_request->refresh_token = 'v^1.1#i^1#r^1#p^3#f^0#I^3#t^Ul4xMF83OjExMUI5OEExQUI1OTAzMEEyOTcxQzk0MUUzNkE2QTJGXzFfMSNFXjI2MA==';
+        // $_request->refresh_token = 'v^1.1#i^1#p^3#r^1#f^0#I^3#t^Ul4xMF8wOjEyMUU3QTlFRUZCOUE5NjI0NDc0NkJGNzdGREM1QjZEXzFfMSNFXjEyODQ=';
+        $_request->refresh_token = 'v^1.1#i^1#r^1#p^3#f^0#I^3#t^Ul4xMF83OjExMUI5OEExQUI1OTAzMEEyOTcxQzk0MUUzNkE2QTJGXzFfMSNFXjI2MA==';
         $_request->scope =
             [
                 'https://api.ebay.com/oauth/api_scope',
