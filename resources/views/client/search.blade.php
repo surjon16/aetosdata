@@ -108,18 +108,21 @@ Competitor Research
         // })
 
         function Search() {
+
             data = {
                 'userid' : $('#userid').val(),
                 'entries' : '100',
                 'page' : '1',
             }
 
+            product_list = document.getElementById('product_list')
+            product_list.innerHTML = ''
+
             Controller.Post('/api/find/itemsadvanced', data).done(function(result) {
                 items = []
                 console.log(result)
-                if(result.searchResult.count>0) {
 
-                    product_list = document.getElementById('product_list')
+                if(result.searchResult.count>0) {
 
                     result.searchResult.item.forEach(item => {
 
