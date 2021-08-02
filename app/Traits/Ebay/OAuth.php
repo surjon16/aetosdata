@@ -19,7 +19,6 @@ trait OAuth
     public function get_app_token(Request $request) {
 
         $service = new Services\OAuthService([
-            // 'apiVersion'    => config('ebay.compatibilityVersion'),
             'credentials'   => config('ebay.production.credentials'),
             'ruName'        => config('ebay.production.ruName'),
             // 'sandbox'       => true,
@@ -35,9 +34,9 @@ trait OAuth
     public function get_user_token($code) {
 
         $service = new Services\OAuthService([
-            // 'apiVersion'    => config('ebay.compatibilityVersion'),
             'credentials'   => config('ebay.sandbox.credentials'),
             'ruName'        => config('ebay.sandbox.ruName'),
+            'sandbox'       => true,
             'Authorization' => 'Basic ' . base64_encode(config('ebay.sandbox.credentials.appId').':'.config('ebay.sandbox.credentials.certId'))
         ]);
         $_request = new Types\GetUserTokenRestRequest();
