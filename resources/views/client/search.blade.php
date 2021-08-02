@@ -111,7 +111,7 @@ Competitor Research
 
             data = {
                 'userid' : $('#userid').val(),
-                'entries' : '100',
+                'entries' : '50',
                 'page' : '1',
             }
 
