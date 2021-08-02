@@ -9,6 +9,7 @@ use App\Traits\Utils;
 
 trait EbayService
 {
+    use Browse;
     use Finding;
     use Fullfillment;
     use Marketing;

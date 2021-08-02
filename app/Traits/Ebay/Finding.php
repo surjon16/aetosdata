@@ -11,6 +11,7 @@ use DTS\eBaySDK\Finding\Types;
 use DTS\eBaySDK\Finding\Enums;
 
 use App\Traits\Utils;
+use DateTime;
 
 trait Finding
 {
@@ -70,15 +71,14 @@ trait Finding
             'name'  => 'Seller',
             'value' => [$request->userid]
         ]);
-
-        // $_request->itemFilter[] = new Types\ItemFilter([
-        //     'name'  => 'HideDuplicateItems',
-        //     'value' => ['true']
-        // ]);
+        $_request->itemFilter[] = new Types\ItemFilter([
+            'name'  => 'EndTimeFrom',
+            'value' => ['2021-08-02T11:40:00.000Z']
+        ]);
 
         // $_request->outputSelector[] = 'SellerInfo';
-        // $_request->outputSelector[] = 'StoreInfo';
-        // $_request->outputSelector[] = 'GalleryInfo';
+        $_request->outputSelector[] = 'UnitPriceInfo';
+        $_request->outputSelector[] = 'GalleryInfo';
 
         $_request->paginationInput = new Types\PaginationInput();
         $_request->paginationInput->entriesPerPage = (int)$request->entries; // result number

@@ -36,13 +36,13 @@ trait OAuth
 
         $service = new Services\OAuthService([
             // 'apiVersion'    => config('ebay.compatibilityVersion'),
-            'credentials'   => config('ebay.production.credentials'),
-            'ruName'        => config('ebay.production.ruName'),
-            'Authorization' => 'Basic ' . base64_encode(config('ebay.production.credentials.appId').':'.config('ebay.production.credentials.certId'))
+            'credentials'   => config('ebay.sandbox.credentials'),
+            'ruName'        => config('ebay.sandbox.ruName'),
+            'Authorization' => 'Basic ' . base64_encode(config('ebay.sandbox.credentials.appId').':'.config('ebay.sandbox.credentials.certId'))
         ]);
         $_request = new Types\GetUserTokenRestRequest();
         $_request->code = $code;
-        $_request->redirect_uri = 'John_Raymark_De-JohnRaym-aetosd-koptkmst';
+        $_request->redirect_uri = config('ebay.sandbox.ruName');
 
         $promise = $service->getUserTokenAsync($_request);
         $response = $promise->wait();

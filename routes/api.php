@@ -30,6 +30,7 @@ Route::match(['get', 'post'], '/testpoint',                 'DataController@test
 Route::match(['get', 'post'], '/get/apptoken',              'DataController@get_app_token');
 Route::match(['get', 'post'], '/get/usertoken',             'DataController@get_user_token');
 Route::match(['get', 'post'], '/get/refreshtoken',          'DataController@get_refresh_token');
+Route::match(['get', 'post'], '/get/item',                  'DataController@get_item');
 Route::match(['get', 'post'], '/get/itemsales',             'DataController@get_item_sales');
 Route::match(['get', 'post'], '/get/orders',                'DataController@get_orders');
 Route::match(['get', 'post'], '/get/itemtransactions',      'DataController@get_item_transactions');

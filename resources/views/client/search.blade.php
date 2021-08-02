@@ -103,67 +103,58 @@ Competitor Research
 
         setSideBar('#menu-search')
 
-        Controller.Post('/api/get/itemtransactions', {}).done(function(_result) {
-            console.log(_result)
-        })
+        // Controller.Post('/api/get/item', {}).done(function(_result) {
+        //     console.log(_result)
+        // })
 
         function Search() {
             data = {
                 'userid' : $('#userid').val(),
-                'entries' : '20',
+                'entries' : '100',
                 'page' : '1',
             }
 
             Controller.Post('/api/find/itemsadvanced', data).done(function(result) {
                 items = []
-                result.searchResult.item.forEach(item => {
-                    items.push(item.itemId)
-                });
-                Controller.Post('/api/get/multipleitems', {'items': items}).done(function(_result) {
-                    console.log(_result)
-                })
+                console.log(result)
+                if(result.searchResult.count>0) {
+
+                    product_list = document.getElementById('product_list')
+
+                    result.searchResult.item.forEach(item => {
+
+                        tr = document.createElement('tr')
+                        tr.innerHTML =
+                            '<th scope="row">' +
+                                '<div class="media align-items-center">' +
+                                    '<a href="#" class="avatar p-1">' +
+                                        '<img alt="Image placeholder" src="'+ item.galleryInfoContainer.galleryURL[2].value +'">' +
+                                    '</a>' +
+                                '</div>' +
+                            '</th>' +
+                            '<td class="text-wrap"><a href="'+ item.viewItemURL +'" target=_blank>' + item.title + '</a></td>' +
+                            '<td>' +  + '</td>' +
+                            '<td>' +  + '</td>' +
+                            '<td>' + item.sellingStatus.currentPrice.currencyId + ' ' + item.sellingStatus.currentPrice.value + '</td>' +
+                            '<td class="text-right">' +
+                                '<div class="dropdown">' +
+                                    '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                    '<i class="fas fa-ellipsis-v"></i>' +
+                                    '</a>' +
+                                    '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
+                                        '<a class="dropdown-item" href="#">Action</a>' +
+                                        '<a class="dropdown-item" href="#">Another action</a>' +
+                                        '<a class="dropdown-item" href="#">Something else here</a>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</td>'
+
+                        product_list.append(tr)
+                    })
+                }
+
+
             })
-
-
-            // Controller.Post('/api/search/store', data).done(function(result) {
-            //     if(result.searchResult.count>0) {
-
-            //         product_list = document.getElementById('product_list')
-
-            //         result.searchResult.item.forEach(item => {
-
-            //             tr = document.createElement('tr')
-            //             tr.innerHTML =
-            //                 '<th scope="row">' +
-            //                     '<div class="media align-items-center">' +
-            //                         '<a href="#" class="avatar">' +
-            //                             '<img alt="Image placeholder" src="'+ item.galleryInfoContainer.galleryURL[2].value +'">' +
-            //                         '</a>' +
-            //                     '</div>' +
-            //                 '</th>' +
-            //                 '<td class="text-wrap"><a href="'+ item.viewItemURL +'" target=_blank>' + item.title + '</a></td>' +
-            //                 '<td>' +  + '</td>' +
-            //                 '<td>' +  + '</td>' +
-            //                 '<td>' + item.sellingStatus.currentPrice.currencyId + ' ' + item.sellingStatus.currentPrice.value + '</td>' +
-            //                 '<td class="text-right">' +
-            //                     '<div class="dropdown">' +
-            //                         '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
-            //                         '<i class="fas fa-ellipsis-v"></i>' +
-            //                         '</a>' +
-            //                         '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
-            //                             '<a class="dropdown-item" href="#">Action</a>' +
-            //                             '<a class="dropdown-item" href="#">Another action</a>' +
-            //                             '<a class="dropdown-item" href="#">Something else here</a>' +
-            //                         '</div>' +
-            //                     '</div>' +
-            //                 '</td>'
-
-            //             product_list.append(tr)
-            //         })
-            //     }
-
-
-            // })
         }
 
     </script>
