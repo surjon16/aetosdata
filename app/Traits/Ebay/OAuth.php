@@ -36,7 +36,7 @@ trait OAuth
         $service = new Services\OAuthService([
             'credentials'   => config('ebay.sandbox.credentials'),
             'ruName'        => config('ebay.sandbox.ruName'),
-            // 'sandbox'       => true,
+            'sandbox'       => true,
             'Authorization' => 'Basic ' . base64_encode(config('ebay.sandbox.credentials.appId').':'.config('ebay.sandbox.credentials.certId'))
         ]);
         $_request = new Types\GetUserTokenRestRequest();
@@ -55,7 +55,7 @@ trait OAuth
             // 'apiVersion'    => config('ebay.compatibilityVersion'),
             'credentials'   => config('ebay.sandbox.credentials'),
             'ruName'        => config('ebay.sandbox.ruName'),
-            // 'sandbox'       => true,
+            'sandbox'       => true,
             'Authorization' => 'Basic ' . base64_encode(config('ebay.sandbox.credentials.appId').':'.config('ebay.sandbox.credentials.certId'))
         ]);
 
